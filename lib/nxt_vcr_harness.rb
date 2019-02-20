@@ -3,7 +3,7 @@ require 'nxt_vcr_harness/cassette_name_by_example'
 require 'nxt_vcr_harness/cassette_tracker'
 
 module NxtVcrHarness
-  def configure(tag_name = :vcr_cassette)
+  def enable_vcr_tag(tag_name = :vcr_cassette)
     RSpec.configure do |config|
       config.around(:each, tag_name) do |example|
         cassette_path = CassetteNameByExample.new(example).call
@@ -31,5 +31,5 @@ module NxtVcrHarness
     end
   end
 
-  module_function :configure, :track_cassettes
+  module_function :enable_vcr_tag, :track_cassettes
 end
