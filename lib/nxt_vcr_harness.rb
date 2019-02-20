@@ -1,5 +1,6 @@
 require "nxt_vcr_harness/version"
 require 'nxt_vcr_harness/cassette_name_by_example'
+require 'nxt_vcr_harness/cassette_tracker'
 
 module NxtVcrHarness
   def configure(tag_name = :vcr_cassette)
@@ -15,5 +16,20 @@ module NxtVcrHarness
     end
   end
 
-  module_function :configure
+  def track_cassettes
+    RSpec.configure do |config|
+      config.after(:suite) do
+        CassetteTracker.instance.stats
+        CassetteTracker.instance.reveal_unused_cassettes(VCR.configuration.cassette_library_dir)
+      end
+    end
+
+    VCR.configure do |config|
+      config.before_playback do |_, cassette|
+        CassetteTracker.instance.track(cassette)
+      end
+    end
+  end
+
+  module_function :configure, :track_cassettes
 end
