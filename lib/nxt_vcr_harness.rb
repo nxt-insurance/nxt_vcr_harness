@@ -3,13 +3,17 @@ require 'nxt_vcr_harness/cassette_name_by_example'
 require 'nxt_vcr_harness/cassette_tracker'
 
 module NxtVcrHarness
-  def enable_vcr_tag(tag_name = :vcr_cassette)
+  def enable_vcr_tag(options = {})
+    tag_name = options.fetch(:tag_name, :vcr_cassette)
+    default_cassette_options = options.fetch(:default_cassette_options, {})
+
     RSpec.configure do |config|
       config.around(:each, tag_name) do |example|
         cassette_path = CassetteNameByExample.new(example).call
-        vcr_options = example.metadata[tag_name].is_a?(TrueClass) ? { } : example.metadata[tag_name]
+        cassette_options = example.metadata[tag_name].is_a?(TrueClass) ? {} : example.metadata[tag_name]
+        cassette_options = default_cassette_options.merge(cassette_options)
 
-        VCR.use_cassette(cassette_path, **vcr_options) do
+        VCR.use_cassette(cassette_path, **cassette_options) do
           example.call
         end
       end
