@@ -1,8 +1,6 @@
 # NxtVcrHarness
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/nxt_vcr_harness`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+NxtVcrHarness helps you with vcr cassette handling in RSpec.  
 
 ## Installation
 
@@ -22,7 +20,17 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+NxtVcrHarness currently has two features. You can use it to find vcr cassettes that are not being used when you 
+run your test suite. Enable it by calling `NxtVcrHarness.track_cassettes`. Note that the output only makes sense when
+you run your complete test suite. If you run only a subset all cassettes that are used by your other test will be included too.
+
+The second feature is that you can enable your custom :vcr tag by calling `NxtVcrHarness.enable_vcr_tag`. This will 
+automatically name your vcr cassettes based on the your rspec example and the surrounding contexts. You can also 
+setup default cassette options for your vcr tag. 
+
+```ruby
+NxtVcrHarness.enable_vcr_tag(tag_name: :my_vcr_tag, default_cassette_options: { ... })
+```
 
 ## Development
 
@@ -32,7 +40,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/nxt_vcr_harness.
+Bug reports and pull requests are welcome on GitHub at https://github.com/nxt-insurance/nxt_vcr_harness.
 
 ## License
 
