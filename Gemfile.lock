@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    nxt_vcr_harness (0.1.0)
+    nxt_vcr_harness (0.1.1)
       rspec (~> 3.0)
       vcr (~> 4.0)
 
@@ -23,6 +23,8 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
+    rspec_junit_formatter (0.4.1)
+      rspec-core (>= 2, < 4, != 2.12.0)
     vcr (4.0.0)
 
 PLATFORMS
@@ -33,6 +35,7 @@ DEPENDENCIES
   nxt_vcr_harness!
   rake (~> 10.0)
   rspec (~> 3.0)
+  rspec_junit_formatter (~> 0.4.1)
 
 BUNDLED WITH
-   1.17.2
+   1.17.3
