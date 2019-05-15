@@ -19,5 +19,25 @@ RSpec.describe NxtVcrHarness::CassetteNameByExample do
         )
       end
     end
+
+    context 'with prefix' do
+      it 'prefixes the path', :vcr_cassette do |example|
+        expect(
+          described_class.new(example).call(prefix: 'features')
+        ).to match(
+          /\A\/features\/cassette_name_by_example_spec\/NxtVcrHarness::CassetteNameByExample\/call\/with_prefix\/prefixes_the_path\z/
+        )
+      end
+    end
+
+    context 'with suffix' do
+      it 'adds a suffix to the path', :vcr_cassette do |example|
+        expect(
+          described_class.new(example).call(suffix: 'setup')
+        ).to match(
+          /\A\/cassette_name_by_example_spec\/NxtVcrHarness::CassetteNameByExample\/call\/with_suffix\/adds_a_suffix_to_the_path\/setup\z/
+        )
+      end
+    end
   end
 end

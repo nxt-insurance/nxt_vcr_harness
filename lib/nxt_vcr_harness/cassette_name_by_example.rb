@@ -6,13 +6,21 @@ module NxtVcrHarness
 
     attr_reader :example
 
-    def call
-      cassette_name_and_path
+    def call(**options)
+      cassette_name_and_path(options)
     end
 
-    def cassette_name_and_path
-      spec_path = example.file_path.gsub(/\.rb$/, '').gsub('./spec/', '/')
-      [spec_path, cassette_name_from_descriptions].join('/')
+    def cassette_name_and_path(options)
+      path = []
+
+      path << options[:prefix]
+      spec_path = example.file_path.gsub(/\.rb$/, '').gsub('./spec/', '')
+
+      path << spec_path
+      path << cassette_name_from_descriptions
+      path << options[:suffix]
+
+      "/#{path.flatten.compact.join('/')}"
     end
 
     def cassette_name_from_descriptions
