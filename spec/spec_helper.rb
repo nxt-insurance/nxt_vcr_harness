@@ -1,5 +1,6 @@
 require "bundler/setup"
 require "nxt_vcr_harness"
+require 'vcr'
 require 'pry'
 
 RSpec.configure do |config|

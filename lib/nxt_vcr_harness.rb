@@ -4,12 +4,21 @@ require 'nxt_vcr_harness/cassette_tracker'
 
 module NxtVcrHarness
   module VcrCassetteHelper
-    def vcr_cassette(**options, &block)
-      cassette_path = CassetteNameByExample.new(example).call(options.slice(:prefix, :suffix))
+    def with_vcr_cassette(example, **options, &block)
+      cassette_by_example_options = %i[prefix suffix]
+      cassette_path = CassetteNameByExample.new(example).call(options.slice(*cassette_by_example_options))
 
-      VCR.use_cassette(cassette_path, **options) do
+      vcr_options = options.reject { |k,_| k.in?(cassette_by_example_options) }
+
+      ::VCR.use_cassette(cassette_path, **vcr_options) do
         block.call
       end
+    end
+
+    def hash_from_example(example, **options)
+      cassette_by_example_options = %i[prefix suffix]
+      name = CassetteNameByExample.new(example).call(options.slice(*cassette_by_example_options))
+      Digest::MD5.hexdigest(name)
     end
   end
 
@@ -40,7 +49,7 @@ module NxtVcrHarness
     RSpec.configure do |config|
       config.after(:suite) do
         CassetteTracker.instance.stats
-        CassetteTracker.instance.reveal_unused_cassettes(VCR.configuration.cassette_library_dir)
+        CassetteTracker.instance.reveal_unused_cassettes(::VCR.configuration.cassette_library_dir)
       end
     end
 

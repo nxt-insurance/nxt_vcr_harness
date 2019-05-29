@@ -11,7 +11,7 @@ RSpec.describe NxtVcrHarness::CassetteNameByExample do
     end
 
     context 'with an it block' do
-      it 'names the file appropriately', :vcr_cassette do |example|
+      it 'names the file appropriately', :with_vcr_cassette do |example|
         expect(
           described_class.new(example).call
         ).to match(
@@ -21,7 +21,7 @@ RSpec.describe NxtVcrHarness::CassetteNameByExample do
     end
 
     context 'with prefix' do
-      it 'prefixes the path', :vcr_cassette do |example|
+      it 'prefixes the path', :with_vcr_cassette do |example|
         expect(
           described_class.new(example).call(prefix: 'features')
         ).to match(
@@ -31,7 +31,7 @@ RSpec.describe NxtVcrHarness::CassetteNameByExample do
     end
 
     context 'with suffix' do
-      it 'adds a suffix to the path', :vcr_cassette do |example|
+      it 'adds a suffix to the path', :with_vcr_cassette do |example|
         expect(
           described_class.new(example).call(suffix: 'setup')
         ).to match(
