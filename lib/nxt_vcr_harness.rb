@@ -45,6 +45,11 @@ module NxtVcrHarness
     end
   end
 
+  def track_cassettes_if(condition)
+    return unless condition
+    track_cassettes
+  end
+
   def track_cassettes
     RSpec.configure do |config|
       config.after(:suite) do
