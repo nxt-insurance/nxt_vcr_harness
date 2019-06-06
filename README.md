@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/nxt-insurance/nxt_vcr_harness.svg?style=svg)](https://circleci.com/gh/nxt-insurance/nxt_vcr_harness)
+
 # NxtVcrHarness
 
 NxtVcrHarness helps you with vcr cassette handling in RSpec.  
