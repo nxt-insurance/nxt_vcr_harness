@@ -65,5 +65,5 @@ module NxtVcrHarness
     end
   end
 
-  module_function :enable_vcr_tag, :track_cassettes, :enable_vcr_cassette_helper
+  module_function :enable_vcr_tag, :track_cassettes, :enable_vcr_cassette_helper, :track_cassettes_if
 end
