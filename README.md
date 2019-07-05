@@ -23,8 +23,9 @@ Or install it yourself as:
 ## Usage
 
 NxtVcrHarness currently has two features. You can use it to find vcr cassettes that are not being used when you 
-run your test suite. Enable it by calling `NxtVcrHarness.track_cassettes`. Note that the output only makes sense when
-you run your complete test suite. If you run only a subset all cassettes that are used by your other test will be included too.
+run your test suite. Enable it by calling `NxtVcrHarness.track_cassettes_if(...your condition in here...)`. 
+Note that the output only makes sense when you run your complete test suite. 
+If you run only a subset all cassettes that are used by your other test will be included too.
 
 The second feature is that you can enable your custom :vcr tag by calling `NxtVcrHarness.enable_vcr_tag`. This will 
 automatically name your vcr cassettes based on the your rspec example and the surrounding contexts. You can also 
