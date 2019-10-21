@@ -1,6 +1,7 @@
 require "nxt_vcr_harness/version"
 require 'nxt_vcr_harness/cassette_name_by_example'
 require 'nxt_vcr_harness/cassette_tracker'
+require 'digest'
 
 module NxtVcrHarness
   module VcrCassetteHelper
