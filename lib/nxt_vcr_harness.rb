@@ -18,7 +18,7 @@ module NxtVcrHarness
 
     def hash_from_example(example, **options)
       cassette_by_example_options = %i[prefix suffix]
-      name = CassetteNameByExample.new(example).call(options.slice(*cassette_by_example_options))
+      name = CassetteNameByExample.new(example).call(**options.slice(*cassette_by_example_options))
       Digest::MD5.hexdigest(name)
     end
   end
