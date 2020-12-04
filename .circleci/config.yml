@@ -4,11 +4,12 @@ jobs:
   build:
     working_directory: /home/circleci/app
     docker:
-      - image: circleci/ruby:2.6.2-node
+      - image: circleci/ruby:2.7.2-node
     environment:
       RACK_ENV: test
       RAILS_ENV: test
       COVERAGE: true
+      BUNDLER_VERSION: 2.1.4
       # CC_TEST_REPORTER_ID: YOUR_REPO_CC_TEST_REPORTER_ID # ENV var set in CircleCI user interface
     steps:
       - checkout
@@ -21,7 +22,7 @@ jobs:
             && sudo apt upgrade -q
       - restore_cache:
           key: v3-bundler-{{ checksum "Gemfile.lock" }}-{{ arch }}
-      - run: gem install bundler
+      - run: gem install bundler --version $BUNDLER_VERSION
       - run: bundle config build.nokogiri --use-system-libraries
       - run: bundle install --without staging:production --path=vendor/bundle --jobs=4 --retry=3
       - save_cache:

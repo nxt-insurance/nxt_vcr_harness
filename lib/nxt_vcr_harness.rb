@@ -7,7 +7,7 @@ module NxtVcrHarness
   module VcrCassetteHelper
     def with_vcr_cassette(example, **options, &block)
       cassette_by_example_options = %i[prefix suffix]
-      cassette_path = CassetteNameByExample.new(example).call(options.slice(*cassette_by_example_options))
+      cassette_path = CassetteNameByExample.new(example).call(**options.slice(*cassette_by_example_options))
 
       vcr_options = options.reject { |k,_| k.in?(cassette_by_example_options) }
 
@@ -18,7 +18,7 @@ module NxtVcrHarness
 
     def hash_from_example(example, **options)
       cassette_by_example_options = %i[prefix suffix]
-      name = CassetteNameByExample.new(example).call(options.slice(*cassette_by_example_options))
+      name = CassetteNameByExample.new(example).call(**options.slice(*cassette_by_example_options))
       Digest::MD5.hexdigest(name)
     end
   end
@@ -29,7 +29,7 @@ module NxtVcrHarness
 
     RSpec.configure do |config|
       config.around(:each, tag_name) do |example|
-        cassette_path = CassetteNameByExample.new(example).call(options.slice(:prefix, :suffix))
+        cassette_path = CassetteNameByExample.new(example).call(**options.slice(:prefix, :suffix))
         cassette_options = example.metadata[tag_name].is_a?(TrueClass) ? {} : example.metadata[tag_name]
         cassette_options = default_cassette_options.merge(cassette_options)
 

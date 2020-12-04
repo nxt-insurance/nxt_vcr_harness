@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
 
     spec.metadata["homepage_uri"] = spec.homepage
     spec.metadata["source_code_uri"] = "https://github.com/nxt-insurance/nxt_vcr_harness"
+    spec.metadata["changelog_uri"] = "https://github.com/nxt-insurance/nxt_vcr_harness/CHANGELOG.md"
   else
     raise "RubyGems 2.0 or newer is required to protect against " \
       "public gem pushes."
@@ -38,7 +39,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rspec", "~> 3.0"
   spec.add_dependency "vcr", "~> 6.0"
 
-  spec.add_development_dependency "bundler", "~> 1.17"
+  spec.add_development_dependency "bundler", "~> 2.1"
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "pry"
