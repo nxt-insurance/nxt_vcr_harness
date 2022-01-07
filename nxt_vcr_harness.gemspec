@@ -43,5 +43,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "pry"
-  spec.add_development_dependency "rspec_junit_formatter", "~> 0.4.1"
+  spec.add_development_dependency "rspec_junit_formatter", "~> 0.5.1"
 end
