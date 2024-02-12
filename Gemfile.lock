@@ -19,7 +19,7 @@ GEM
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
       rspec-mocks (~> 3.12.0)
-    rspec-core (3.12.2)
+    rspec-core (3.12.3)
       rspec-support (~> 3.12.0)
     rspec-expectations (3.12.3)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -27,8 +27,8 @@ GEM
     rspec-mocks (3.12.6)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
-    rspec-support (3.12.1)
-    rspec_junit_formatter (0.4.1)
+    rspec-support (3.12.2)
+    rspec_junit_formatter (0.6.0)
       rspec-core (>= 2, < 4, != 2.12.0)
     vcr (6.2.0)
 
@@ -36,12 +36,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 2.1)
+  bundler
   nxt_vcr_harness!
   pry
-  rake (~> 13.0)
-  rspec (~> 3.0)
-  rspec_junit_formatter (~> 0.4.1)
+  rake
+  rspec
+  rspec_junit_formatter
 
 BUNDLED WITH
    2.1.4
