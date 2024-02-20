@@ -1,6 +1,7 @@
 require "nxt_vcr_harness/version"
 require 'nxt_vcr_harness/cassette_name_by_example'
 require 'nxt_vcr_harness/cassette_tracker'
+require 'nxt_vcr_harness/unneeded_headers'
 require 'digest'
 
 module NxtVcrHarness
@@ -66,5 +67,19 @@ module NxtVcrHarness
     end
   end
 
-  module_function :enable_vcr_tag, :track_cassettes, :enable_vcr_cassette_helper, :track_cassettes_if
+  def strip_unneeded_headers_before_save
+    headers_to_strip = UnneededHeaders.default_headers_to_strip
+
+    yield headers_to_strip if block_given?
+
+    ::VCR.configure do |config|
+      config.before_record do |interaction, _cassette|
+        UnneededHeaders.strip(interaction.request.headers, headers_to_strip[:requests])
+        UnneededHeaders.strip(interaction.response.headers, headers_to_strip[:responses])
+      end
+    end
+  end
+
+  module_function :enable_vcr_tag, :track_cassettes, :enable_vcr_cassette_helper, :track_cassettes_if,
+    :strip_unneeded_headers_before_save
 end

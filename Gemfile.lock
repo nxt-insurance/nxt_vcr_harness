@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    nxt_vcr_harness (0.1.4)
+    nxt_vcr_harness (0.2.0)
       rspec (~> 3.0)
       vcr (~> 6.0)
 
