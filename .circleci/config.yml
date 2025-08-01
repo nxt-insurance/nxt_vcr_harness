@@ -10,7 +10,7 @@ jobs:
     parallelism: 1
     resource_class: small
     docker:
-      - image: cimg/ruby:3.2.2
+      - image: cimg/ruby:3.2.9
     steps:
       - checkout
       - ruby/install-deps:
